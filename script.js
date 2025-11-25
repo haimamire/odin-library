@@ -28,6 +28,9 @@ function addBookToLibrary() {
 
 function displayBookLibrary() {
     const bookContainer = document.querySelector('.container');
+
+    const allBooks = document.querySelectorAll('.book-card');
+    allBooks.forEach((node) => { node.remove() });
     
     for (let book of bookLibrary) {
         const bookDiv = document.createElement('div');
@@ -42,7 +45,11 @@ function displayBookLibrary() {
     }
 }
 
-console.log(crypto.randomUUID());
+const addBookBtn = document.querySelector('.add-book-btn');
 
-addBookToLibrary();
+addBookBtn.addEventListener('click', (e) => { 
+    addBookToLibrary();
+    displayBookLibrary();
+})
+
 displayBookLibrary();
