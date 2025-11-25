@@ -6,9 +6,9 @@ const bookLibrary = [
         readStatus: false,
     },
     {
-        title: 'aaa',
-        author: 'aa',
-        pages: 1,
+        title: 'bbb',
+        author: 'bb',
+        pages: 2,
         readStatus: false,
     },
 ];
@@ -21,7 +21,9 @@ function Book(title, author, pages, readStatus) {
 }
 
 function addBookToLibrary() {
+    const newBook = new Book('poronga', 'porongosa', '0', true);
 
+    bookLibrary.push(newBook);
 }
 
 function displayBookLibrary() {
@@ -40,4 +42,7 @@ function displayBookLibrary() {
     }
 }
 
+console.log(crypto.randomUUID());
+
+addBookToLibrary();
 displayBookLibrary();
