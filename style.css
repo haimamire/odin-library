@@ -40,3 +40,23 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+:root {
+  background-color: aliceblue;
+}
+
+.container {
+  padding: 20px;
+
+  display: grid;
+  grid-template: auto / repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.book-card {
+  background-color: white;
+  padding: 20px;
+
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px gray;
+}
