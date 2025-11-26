@@ -1,4 +1,4 @@
-const bookLibrary = [];
+let bookLibrary = [];
 
 function Book(id, title, author, pages, readStatus) {
     this.id = id;
@@ -27,23 +27,44 @@ function displayBookLibrary() {
         bookDiv.className = 'book-card';
         bookDiv.dataset.id = book.id;
 
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = "Remove";
-
         for (let key in book) {
             const bookInfo = document.createElement('div');
             bookInfo.textContent = book[key];
             bookDiv.appendChild(bookInfo);
         }
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = "remove-button";
+        removeBtn.textContent = "Remove";
         bookDiv.appendChild(removeBtn);
+
+        removeBtn.addEventListener('click', () => {
+            removeBook(book.id)
+        });
+
         bookContainer.appendChild(bookDiv);
     }
 }
 
+function removeBook(id) {
+    bookLibrary = bookLibrary.filter(item => item.id !== id);
+    
+    document.querySelectorAll('.book-card').forEach(
+        (item) => {
+            if (item.dataset.id === id) item.remove();
+        }
+    )
+}
+
 const addBookBtn = document.querySelector('.add-book-btn');
 const newBookDialog = document.querySelector('dialog');
-
 const addBookForm = document.querySelector('form');
+
+
+addBookBtn.addEventListener('click', () => {
+    newBookDialog.showModal();
+})
+
 
 addBookForm.addEventListener('submit', (e) => {
     const titleInput = document.querySelector('#title-input');
@@ -65,8 +86,5 @@ addBookForm.addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
-addBookBtn.addEventListener('click', () => {
-    newBookDialog.showModal();
-})
 
 displayBookLibrary();
