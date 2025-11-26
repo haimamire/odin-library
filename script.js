@@ -8,6 +8,10 @@ function Book(id, title, author, pages, readStatus) {
     this.readStatus = readStatus;
 }
 
+Book.prototype.changeReadStatus = function() {
+    this.readStatus === true ? this.readStatus = false : this.readStatus = true;
+}
+
 function addBookToLibrary(title, author, pages, readStatus) {
     const bookId = crypto.randomUUID();
 
@@ -38,8 +42,17 @@ function displayBookLibrary() {
         removeBtn.textContent = "Remove";
         bookDiv.appendChild(removeBtn);
 
+        const changeStatusBtn = document.createElement('button');
+        changeStatusBtn.className = "change-status-button";
+        changeStatusBtn.textContent = "Change status";
+        bookDiv.appendChild(changeStatusBtn);
+
         removeBtn.addEventListener('click', () => {
             removeBook(book.id)
+        });
+
+        changeStatusBtn.addEventListener('click', () => {
+            changeStatus(book)
         });
 
         bookContainer.appendChild(bookDiv);
@@ -48,12 +61,16 @@ function displayBookLibrary() {
 
 function removeBook(id) {
     bookLibrary = bookLibrary.filter(item => item.id !== id);
-    
     document.querySelectorAll('.book-card').forEach(
         (item) => {
             if (item.dataset.id === id) item.remove();
         }
     )
+}
+
+function changeStatus(book) {
+    book.changeReadStatus();
+    displayBookLibrary();
 }
 
 const addBookBtn = document.querySelector('.add-book-btn');
