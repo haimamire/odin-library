@@ -8,10 +8,10 @@ function Book(id, title, author, pages, readStatus) {
     this.readStatus = readStatus;
 }
 
-function addBookToLibrary(title) {
+function addBookToLibrary(title, author, pages, readStatus) {
     const bookId = crypto.randomUUID();
 
-    const newBook = new Book(bookId, title, 'porongosa', '0', true);
+    const newBook = new Book(bookId, title, author, pages, readStatus);
 
     bookLibrary.push(newBook);
 }
@@ -42,12 +42,20 @@ const addBookForm = document.querySelector('form');
 
 addBookForm.addEventListener('submit', (e) => {
     const titleInput = document.querySelector('#title-input');
+    const authorInput = document.querySelector('#author-input');
+    const pagesInput = document.querySelector('#pages-input');
+    const readStatusInput = document.querySelector('input[name="read-status"]:checked');
+
     addBookToLibrary(
         titleInput.value,
+        authorInput.value,
+        pagesInput.value,
+        readStatusInput.value
     );
 
     newBookDialog.close();
     displayBookLibrary();
+
     e.preventDefault();
 });
 

@@ -11,9 +11,18 @@
     <div class="container">
         <button class="add-book-btn">+</button>
         <dialog>
-            <form id="add-book-form"method="post">
+            <form id="add-book-form" method="post">
                 <label for="title-input">Title</label>
-                <input type="text" id="title-input" name="title-input">
+                <input type="text" id="title-input">
+                <label for="author-input">Author</label>
+                <input type="text" id="author-input">
+                <label for="pages-input">Pages</label>
+                <input type="number" id="pages-input">
+                <label for="read-input">Read</label>
+                <input type="radio" id="read-input" name="read-status" value="true">
+                <label for="not-read-input">Not read</label>
+                <input type="radio" id="not-read-input" name="read-status" value="false">
+                
                 <button type="submit">Add book</button>
             </form>
         </dialog>
