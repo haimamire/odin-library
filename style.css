@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px;
 
   display: grid;
-  grid-template: auto / repeat(auto-fit, minmax(300px, 1fr));
+  grid-template: auto / repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
 }
 
@@ -59,4 +59,8 @@ h1, h2, h3, h4, h5, h6 {
 
   border-radius: 20px;
   box-shadow: 1px 1px 5px gray;
+}
+
+dialog {
+  margin: auto;
 }

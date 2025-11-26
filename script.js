@@ -1,19 +1,7 @@
-const bookLibrary = [
-    {
-        title: 'aaa',
-        author: 'aa',
-        pages: 1,
-        readStatus: false,
-    },
-    {
-        title: 'bbb',
-        author: 'bb',
-        pages: 2,
-        readStatus: false,
-    },
-];
+const bookLibrary = [];
 
-function Book(title, author, pages, readStatus) {
+function Book(id, title, author, pages, readStatus) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -21,7 +9,9 @@ function Book(title, author, pages, readStatus) {
 }
 
 function addBookToLibrary() {
-    const newBook = new Book('poronga', 'porongosa', '0', true);
+    const bookId = crypto.randomUUID();
+
+    const newBook = new Book(bookId, 'poronga', 'porongosa', '0', true);
 
     bookLibrary.push(newBook);
 }
@@ -46,10 +36,10 @@ function displayBookLibrary() {
 }
 
 const addBookBtn = document.querySelector('.add-book-btn');
+const newBookDialog = document.querySelector('dialog');
 
-addBookBtn.addEventListener('click', (e) => { 
-    addBookToLibrary();
-    displayBookLibrary();
+addBookBtn.addEventListener('click', () => {
+    newBookDialog.showModal();
 })
 
 displayBookLibrary();
