@@ -32,9 +32,11 @@ function displayBookLibrary() {
         bookDiv.dataset.id = book.id;
 
         for (let key in book) {
-            const bookInfo = document.createElement('div');
-            bookInfo.textContent = book[key];
-            bookDiv.appendChild(bookInfo);
+            if (book.hasOwnProperty(key)) {
+                const bookInfo = document.createElement('div');
+                bookInfo.textContent = book[key];
+                bookDiv.appendChild(bookInfo);
+            }
         }
 
         const removeBtn = document.createElement('button');
