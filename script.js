@@ -8,10 +8,10 @@ function Book(id, title, author, pages, readStatus) {
     this.readStatus = readStatus;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(title) {
     const bookId = crypto.randomUUID();
 
-    const newBook = new Book(bookId, 'poronga', 'porongosa', '0', true);
+    const newBook = new Book(bookId, title, 'porongosa', '0', true);
 
     bookLibrary.push(newBook);
 }
@@ -37,6 +37,19 @@ function displayBookLibrary() {
 
 const addBookBtn = document.querySelector('.add-book-btn');
 const newBookDialog = document.querySelector('dialog');
+
+const addBookForm = document.querySelector('form');
+
+addBookForm.addEventListener('submit', (e) => {
+    const titleInput = document.querySelector('#title-input');
+    addBookToLibrary(
+        titleInput.value,
+    );
+
+    newBookDialog.close();
+    displayBookLibrary();
+    e.preventDefault();
+});
 
 addBookBtn.addEventListener('click', () => {
     newBookDialog.showModal();
