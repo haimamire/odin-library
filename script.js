@@ -25,12 +25,17 @@ function displayBookLibrary() {
     for (let book of bookLibrary) {
         const bookDiv = document.createElement('div');
         bookDiv.className = 'book-card';
+        bookDiv.dataset.id = book.id;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "Remove";
 
         for (let key in book) {
             const bookInfo = document.createElement('div');
             bookInfo.textContent = book[key];
             bookDiv.appendChild(bookInfo);
         }
+        bookDiv.appendChild(removeBtn);
         bookContainer.appendChild(bookDiv);
     }
 }
@@ -54,6 +59,7 @@ addBookForm.addEventListener('submit', (e) => {
     );
 
     newBookDialog.close();
+    addBookForm.reset();
     displayBookLibrary();
 
     e.preventDefault();
